@@ -223,6 +223,19 @@
   .skills dt { font-weight: 700; }
   .skills dd { margin: 0; color: var(--muted); }
 
+  /* data */
+  .data-list { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
+  .data-list li { border-bottom: 1px solid var(--line); }
+  .data-list a, .data-list .soon > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 24px; align-items: center; padding: 16px 4px; color: var(--ink); }
+  .data-list a:hover { text-decoration: none; background: var(--alt); }
+  .data-list a:hover strong { color: var(--blue); }
+  .d-main { display: grid; gap: 2px; }
+  .d-main strong { font-weight: 700; }
+  .d-main > span { color: var(--muted); font-size: .92rem; }
+  .d-src { font-size: .78rem; font-weight: 700; color: var(--blue); white-space: nowrap; }
+  .data-list a .d-src::after { content: " →"; }
+  .soon .d-src { color: var(--muted); padding: 3px 8px; box-shadow: inset 0 0 0 1px var(--line); }
+
   /* publications */
   .pub-tools { display: flex; flex-wrap: wrap; gap: 6px; }
   .chip { font: 600 .82rem/1 var(--font); padding: 9px 14px; border: 1px solid var(--line); background: var(--page); color: var(--muted); cursor: pointer; }
@@ -238,14 +251,9 @@
   .pub .a b { color: var(--ink); font-weight: 700; }
   .pub .j { font-style: italic; }
   .pub .doi { font-size: .78rem; font-weight: 600; margin-left: 4px; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
-  .pub.first .t::before { content: "First author"; display: inline-block; margin-right: 8px; vertical-align: 1px; font-size: .66rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 3px 6px; background: var(--gold); color: #0B2341; }
-  :root[data-lang="ko"] .pub.first .t::before { content: "제1저자"; letter-spacing: 0; }
   .review-note { color: var(--muted); font-size: .9rem; margin-bottom: 12px; }
   .review-list { display: flex; flex-wrap: wrap; gap: 8px; }
   .review-list .pub { font-style: italic; font-size: .88rem; line-height: 1.3; padding: 8px 12px; background: var(--alt); }
-  .review-list .pub.first { box-shadow: inset 3px 0 0 var(--gold); }
-  .review-list .pub.first::after { content: "First author"; font-style: normal; font-size: .64rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; margin-left: 8px; color: var(--muted); }
-  :root[data-lang="ko"] .review-list .pub.first::after { content: "제1저자"; }
 
   /* talks, outreach */
   .plain-list { list-style: none; margin: 0; padding: 0; display: grid; font-size: .94rem; }
@@ -258,7 +266,7 @@
 
   /* timeline */
   .timeline { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
-  .timeline li { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 24px; padding-block: 20px; border-bottom: 1px solid var(--line); }
+  .timeline > li { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 24px; padding-block: 20px; border-bottom: 1px solid var(--line); }
   .when { font-weight: 700; color: var(--blue); font-size: .88rem; font-variant-numeric: tabular-nums; line-height: 1.8; }
   .what { display: grid; gap: 3px; }
   .where { color: var(--muted); font-size: .93rem; }
@@ -297,10 +305,11 @@
   @media (max-width: 560px) {
     .side-blocks { grid-template-columns: minmax(0, 1fr); }
     .block:nth-child(odd) { border-right: 0; }
-    .pub-year, .timeline li { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+    .pub-year, .timeline > li { grid-template-columns: minmax(0, 1fr); gap: 6px; }
     .news li { grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; }
     .news li p { grid-column: 1 / -1; }
     .plain-list li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+    .data-list a, .data-list .soon > div { grid-template-columns: minmax(0, 1fr); }
     .feature { padding: 20px; }
     .research-item > :not(.r-img) { margin-inline: 20px; }
     .iso-scale { font-size: .64rem; }
@@ -315,12 +324,11 @@
     <span class="where-txt"><span class="en">NASA Goddard Institute for Space Studies · New York</span><span class="ko">NASA 고다드 우주연구소 · 미국 뉴욕</span></span>
     <div class="utility-links">
       <a href="https://scholar.google.com/citations?user=DOV5vZwAAAAJ&amp;hl=en">Google Scholar</a>
-      <a href="https://www.researchgate.net/profile/Hayoung-Bong">ResearchGate</a>
       <div class="lang" role="group" aria-label="Language">
         <button type="button" id="lang-ko" data-lang="ko" aria-pressed="false">KOR</button>
         <button type="button" id="lang-en" data-lang="en" aria-pressed="true">ENG</button>
       </div>
-      <button class="theme-btn" type="button" id="theme-toggle" aria-label="Toggle dark mode">◐</button>
+      <button class="theme-btn" type="button" id="theme-toggle" aria-label="Switch light or dark" title="Light by day, dark after sunset — click to switch">◐</button>
     </div>
   </div>
 </div>
@@ -333,6 +341,7 @@
         <li><a href="#about"><span class="en">About</span><span class="ko">소개</span></a></li>
         <li><a href="#news"><span class="en">News</span><span class="ko">소식</span></a></li>
         <li><a href="#research"><span class="en">Research</span><span class="ko">연구</span></a></li>
+        <li><a href="#data"><span class="en">Data</span><span class="ko">자료</span></a></li>
         <li><a href="#publications"><span class="en">Publications</span><span class="ko">논문</span></a></li>
         <li><a href="#talks"><span class="en">Talks</span><span class="ko">발표</span></a></li>
         <li><a href="#experience"><span class="en">Experience</span><span class="ko">경력</span></a></li>
@@ -358,10 +367,10 @@
 
 <div class="stats">
   <ul class="container">
-    <li><strong>20</strong><span><span class="en">peer-reviewed papers</span><span class="ko">게재·승인 논문</span></span></li>
-    <li><strong>8</strong><span><span class="en">manuscripts under review</span><span class="ko">심사 중 논문</span></span></li>
-    <li><strong>3</strong><span><span class="en">CMIP modeling centres: IPSL, MIROC, NASA GISS</span><span class="ko">CMIP 모델링 기관: IPSL·MIROC·NASA GISS</span></span></li>
-    <li><strong>85<small><span class="en">yr</span><span class="ko">년</span></small></strong><span><span class="en">isotope-enabled simulations, 1940–present</span><span class="ko">동위원소 모의 기간 (1940–현재)</span></span></li>
+    <li><strong>20</strong><span><span class="en">Peer-reviewed publications</span><span class="ko">게재 논문</span></span></li>
+    <li><strong>4</strong><span><span class="en">Countries of research: Korea, France, Japan, USA</span><span class="ko">연구 수행 국가: 한국·프랑스·일본·미국</span></span></li>
+    <li><strong>29</strong><span><span class="en">Scientists in WisoMIP Phase 1</span><span class="ko">WisoMIP 1단계 참여 연구자</span></span></li>
+    <li><strong>85<small><span class="en">yr</span><span class="ko">년</span></small></strong><span><span class="en">Isotope simulations, 1940–present</span><span class="ko">동위원소 모의 기간 (1940–현재)</span></span></li>
   </ul>
 </div>
 
@@ -539,13 +548,34 @@
         </dl>
       </section>
 
+      <!-- DATA -->
+      <section id="data">
+        <h2 class="sec-title"><span class="en">Data &amp; resources</span><span class="ko">자료 및 데이터</span></h2>
+        <ul class="data-list">
+          <li><a href="https://data.giss.nasa.gov/wisomip/">
+            <span class="d-main"><strong>WisoMIP</strong><span><span class="en">Water Isotope Model Intercomparison Project: protocols, participating models and data access</span><span class="ko">물 동위원소 모델 상호비교 프로젝트: 실험 규약, 참여 모델, 자료 안내</span></span></span>
+            <span class="d-src">NASA GISS Data</span></a></li>
+          <li><a href="http://portal.nccs.nasa.gov/datashare/giss-publish/pub/paleoclimate/wisomip">
+            <span class="d-main"><strong><span class="en">WisoMIP Phase 1 model output</span><span class="ko">WisoMIP 1단계 모델 자료</span></strong><span><span class="en">Present-day isotope-enabled simulations from all participating models</span><span class="ko">참여 모델 전체의 현재 기후 동위원소 모의 결과</span></span></span>
+            <span class="d-src">NASA NCCS</span></a></li>
+          <li><a href="https://doi.org/10.5281/zenodo.14681370">
+            <span class="d-main"><strong><span class="en">IsoGSM4 high-resolution isotope simulations</span><span class="ko">IsoGSM4 고해상도 동위원소 모의 자료</span></strong><span><span class="en">Downscaled (~50 km) reanalysis-nudged water isotopes, 1940–2024</span><span class="ko">약 50 km 상세화 재분석 너징 물 동위원소, 1940–2024</span></span></span>
+            <span class="d-src">Zenodo</span></a></li>
+          <li><a href="https://doi.org/10.5281/zenodo.10624474">
+            <span class="d-main"><strong><span class="en">Isotope model intercomparison dataset</span><span class="ko">동위원소 모델 상호비교 자료</span></strong><span><span class="en">Nudged simulations from Bong et al. (2024), JGR: Atmospheres</span><span class="ko">Bong et al. (2024) JGR: Atmospheres 너징 모의 자료</span></span></span>
+            <span class="d-src">Zenodo</span></a></li>
+          <li class="soon"><div>
+            <span class="d-main"><strong><span class="en">FrontFinder: deep-learning front catalog</span><span class="ko">FrontFinder: 딥러닝 전선 카탈로그</span></strong><span><span class="en">Global 6-hourly, 0.25° atmospheric fronts detected with a U-Net trained on ERA5</span><span class="ko">ERA5로 학습한 U-Net으로 탐지한 전 지구 6시간·0.25° 대기 전선</span></span></span>
+            <span class="d-src"><span class="en">Coming soon</span><span class="ko">공개 예정</span></span></div></li>
+        </ul>
+      </section>
+
       <!-- PUBLICATIONS -->
       <section id="publications">
         <div class="sec-head">
           <h2 class="sec-title"><span class="en">Publications</span><span class="ko">논문</span></h2>
           <div class="pub-tools" role="group" aria-label="Filter publications">
             <button class="chip" type="button" id="f-all" data-filter="all" aria-pressed="true"><span class="en">All</span><span class="ko">전체</span></button>
-            <button class="chip" type="button" id="f-first" data-filter="first" aria-pressed="false"><span class="en">First author</span><span class="ko">제1저자</span></button>
             <button class="chip" type="button" id="f-pub" data-filter="published" aria-pressed="false"><span class="en">Published</span><span class="ko">게재</span></button>
             <button class="chip" type="button" id="f-rev" data-filter="review" aria-pressed="false"><span class="en">Under review</span><span class="ko">심사 중</span></button>
           </div>
@@ -764,16 +794,67 @@
       langBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === l ? 'true' : 'false'); });
       set('lang', l);
     }
-    setLang(get('lang') || ((navigator.language || '').toLowerCase().indexOf('ko') === 0 ? 'ko' : 'en'));
+    setLang(get('lang') || 'en');
     langBtns.forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.lang); }); });
 
-    var savedTheme = get('theme');
-    if (savedTheme) root.setAttribute('data-theme', savedTheme);
+    // Theme: light while the sun is up where the visitor is, dark after sunset.
+    // Location is estimated from the browser's time zone (no permission prompt).
+    var TZ = {
+      'America/New_York':[40.7,-74],'America/Detroit':[42.3,-83],'America/Chicago':[41.9,-87.6],'America/Denver':[39.7,-105],
+      'America/Phoenix':[33.4,-112],'America/Los_Angeles':[34,-118.2],'America/Anchorage':[61.2,-149.9],'Pacific/Honolulu':[21.3,-157.9],
+      'America/Toronto':[43.7,-79.4],'America/Vancouver':[49.3,-123.1],'America/Mexico_City':[19.4,-99.1],'America/Costa_Rica':[9.9,-84.1],
+      'America/Bogota':[4.7,-74.1],'America/Lima':[-12,-77],'America/Santiago':[-33.4,-70.7],'America/Sao_Paulo':[-23.5,-46.6],
+      'America/Argentina/Buenos_Aires':[-34.6,-58.4],'Europe/London':[51.5,-0.1],'Europe/Dublin':[53.3,-6.3],'Europe/Lisbon':[38.7,-9.1],
+      'Europe/Paris':[48.9,2.35],'Europe/Brussels':[50.8,4.4],'Europe/Amsterdam':[52.4,4.9],'Europe/Berlin':[52.5,13.4],
+      'Europe/Zurich':[47.4,8.5],'Europe/Vienna':[48.2,16.4],'Europe/Rome':[41.9,12.5],'Europe/Madrid':[40.4,-3.7],
+      'Europe/Copenhagen':[55.7,12.6],'Europe/Oslo':[59.9,10.8],'Europe/Stockholm':[59.3,18.1],'Europe/Helsinki':[60.2,24.9],
+      'Europe/Warsaw':[52.2,21],'Europe/Athens':[38,23.7],'Europe/Istanbul':[41,29],'Europe/Moscow':[55.8,37.6],
+      'Africa/Cairo':[30,31.2],'Africa/Lagos':[6.5,3.4],'Africa/Nairobi':[-1.3,36.8],'Africa/Johannesburg':[-26.2,28],
+      'Asia/Dubai':[25.2,55.3],'Asia/Kolkata':[28.6,77.2],'Asia/Calcutta':[28.6,77.2],'Asia/Bangkok':[13.8,100.5],
+      'Asia/Ho_Chi_Minh':[10.8,106.7],'Asia/Jakarta':[-6.2,106.8],'Asia/Singapore':[1.35,103.8],'Asia/Kuala_Lumpur':[3.1,101.7],
+      'Asia/Manila':[14.6,121],'Asia/Hong_Kong':[22.3,114.2],'Asia/Taipei':[25,121.5],'Asia/Shanghai':[31.2,121.5],
+      'Asia/Seoul':[37.57,126.98],'Asia/Tokyo':[35.7,139.7],'Australia/Perth':[-31.95,115.9],'Australia/Brisbane':[-27.5,153],
+      'Australia/Sydney':[-33.9,151.2],'Australia/Melbourne':[-37.8,145],'Pacific/Auckland':[-36.8,174.8]
+    };
+    function visitorLatLon() {
+      var tz = '';
+      try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
+      if (TZ[tz]) return TZ[tz];
+      var lon = -new Date().getTimezoneOffset() / 4;
+      var south = /^(Australia|Antarctica)\//.test(tz) || /America\/(Argentina|Sao_Paulo|Santiago|Montevideo)/.test(tz);
+      return [south ? -30 : 35, lon];
+    }
+    // Sunrise equation (https://en.wikipedia.org/wiki/Sunrise_equation)
+    function isDaylight(now) {
+      var ll = visitorLatLon(), rad = Math.PI / 180, lat = ll[0] * rad;
+      var J = now / 86400000 + 2440587.5;
+      var n = Math.round(J - 2451545.0 + 0.0008);
+      var Js = n - ll[1] / 360;
+      var M = (357.5291 + 0.98560028 * Js) % 360;
+      var C = 1.9148 * Math.sin(M * rad) + 0.02 * Math.sin(2 * M * rad) + 0.0003 * Math.sin(3 * M * rad);
+      var L = (M + C + 180 + 102.9372) % 360;
+      var Jt = 2451545.0 + Js + 0.0053 * Math.sin(M * rad) - 0.0069 * Math.sin(2 * L * rad);
+      var dec = Math.asin(Math.sin(L * rad) * Math.sin(23.4397 * rad));
+      var cosW = (Math.sin(-0.833 * rad) - Math.sin(lat) * Math.sin(dec)) / (Math.cos(lat) * Math.cos(dec));
+      if (cosW > 1) return false;   // polar night
+      if (cosW < -1) return true;   // midnight sun
+      var W = Math.acos(cosW) / rad / 360;
+      var toMs = function (j) { return (j - 2440587.5) * 86400000; };
+      return now >= toMs(Jt - W) && now < toMs(Jt + W);
+    }
+    function sget(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
+    function sset(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
+    function applyAutoTheme() {
+      if (sget('theme')) return;  // visitor switched manually this visit
+      root.setAttribute('data-theme', isDaylight(Date.now()) ? 'light' : 'dark');
+    }
+    var manual = sget('theme');
+    if (manual) root.setAttribute('data-theme', manual); else applyAutoTheme();
+    setInterval(applyAutoTheme, 5 * 60 * 1000);
     document.getElementById('theme-toggle').addEventListener('click', function () {
-      var cur = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      var next = cur === 'dark' ? 'light' : 'dark';
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
-      set('theme', next);
+      sset('theme', next);
     });
 
     var chips = document.querySelectorAll('.chip'), years = document.querySelectorAll('.pub-year');
