@@ -3,371 +3,40 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Hayoung Bong</title>
-<meta name="description" content="Hayoung Bong — climate scientist at NASA GISS studying the global water cycle with isotope-enabled climate models.">
+<meta name="description" content="Hayoung Bong is a climate scientist at NASA GISS studying the global water cycle with isotope-enabled climate models. Lead of the Water Isotope Model Intercomparison Project (WisoMIP).">
+<meta name="author" content="Hayoung Bong">
+<link rel="canonical" href="https://hayoungbong.github.io/">
+<meta name="theme-color" content="#081A31">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Hayoung Bong">
 <meta property="og:title" content="Hayoung Bong · Climate Scientist, NASA GISS">
 <meta property="og:description" content="Water isotope modeling, WisoMIP, ENSO dynamics, and deep-learning front detection.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="assets/hero.jpg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Noto+Sans+KR:wght@400;500;700&display=swap">
-<style>
-  :root {
-    --page: #FFFFFF;
-    --alt: #F3F5F8;
-    --ink: #1A2331;
-    --muted: #5B6676;
-    --line: #DDE2E9;
-    --blue: #1D5BB8;
-    --blue-soft: #E7EEF9;
-    --navy: #0B2341;
-    --navy-2: #081A31;
-    --on-navy: #F2F5F9;
-    --on-navy-muted: rgba(242, 245, 249, .7);
-    --navy-line: rgba(255, 255, 255, .14);
-    --gold: #F0B429;
-    --font: "Libre Franklin", "Helvetica Neue", Arial, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-    color-scheme: light;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --page: #0D1522; --alt: #131E2E; --ink: #E4EAF2; --muted: #9AA7B8; --line: #243247;
-      --blue: #82B1F5; --blue-soft: #1A2B45; --navy: #0A1A30; --navy-2: #06111F;
-      color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
-    --page: #0D1522; --alt: #131E2E; --ink: #E4EAF2; --muted: #9AA7B8; --line: #243247;
-    --blue: #82B1F5; --blue-soft: #1A2B45; --navy: #0A1A30; --navy-2: #06111F;
-    color-scheme: dark;
-  }
-  :root[data-lang="ko"] { --font: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", "Libre Franklin", sans-serif; }
-  :root[data-lang="ko"] .en, :root[data-lang="en"] .ko { display: none !important; }
-
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  body {
-    margin: 0; background: var(--page); color: var(--ink);
-    font: 400 1rem/1.7 var(--font);
-    -webkit-font-smoothing: antialiased;
-    word-break: keep-all; overflow-wrap: anywhere;
-  }
-  a { color: var(--blue); text-decoration: none; }
-  a:hover { text-decoration: underline; text-underline-offset: 3px; }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
-  img { max-width: 100%; display: block; }
-  p { margin: 0; }
-  h1, h2, h3 { text-wrap: balance; }
-  .container { max-width: 1200px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 40px); }
-
-  /* ---------- utility bar ---------- */
-  .utility { background: var(--navy-2); color: var(--on-navy-muted); font-size: .8rem; }
-  .utility .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 40px; }
-  .utility a { color: var(--on-navy-muted); }
-  .utility a:hover { color: #fff; }
-  .utility-links { display: flex; align-items: center; gap: 18px; }
-  .lang { display: inline-flex; gap: 2px; }
-  .lang button, .theme-btn {
-    background: none; border: 0; cursor: pointer; color: var(--on-navy-muted);
-    font: 600 .75rem/1 var(--font); padding: 6px 7px; letter-spacing: .04em;
-  }
-  .lang button[aria-pressed="true"] { color: #fff; box-shadow: inset 0 -2px 0 var(--gold); }
-  .lang button:hover, .theme-btn:hover { color: #fff; }
-
-  /* ---------- header ---------- */
-  .site-header {
-    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
-    background: var(--page); border-bottom: 1px solid var(--line);
-  }
-  .site-header .container { display: flex; align-items: center; gap: 32px; min-height: 72px; }
-  .logo { display: grid; line-height: 1.15; color: var(--ink); }
-  .logo:hover { text-decoration: none; }
-  .logo strong { font-size: 1.3rem; font-weight: 800; letter-spacing: -.01em; }
-  .logo > span { font-size: .74rem; color: var(--muted); font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
-  :root[data-lang="ko"] .logo > span { letter-spacing: 0; text-transform: none; font-size: .8rem; }
-  .site-nav { margin-left: auto; overflow-x: auto; scrollbar-width: none; }
-  .site-nav::-webkit-scrollbar { display: none; }
-  .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 4px; }
-  .site-nav a {
-    display: block; padding: 25px 12px 23px; white-space: nowrap;
-    color: var(--ink); font-weight: 600; font-size: .92rem;
-    border-bottom: 3px solid transparent;
-  }
-  .site-nav a:hover { text-decoration: none; color: var(--blue); }
-  .site-nav a.active { border-bottom-color: var(--gold); }
-
-  /* ---------- hero ---------- */
-  .hero {
-    position: relative; color: #fff;
-    background: var(--navy) url("assets/hero.jpg") center 35% / cover no-repeat;
-  }
-  .hero::before {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(90deg, rgba(8, 26, 49, .94) 0%, rgba(8, 26, 49, .82) 38%, rgba(8, 26, 49, .25) 75%, rgba(8, 26, 49, .1) 100%);
-  }
-  .hero .container { position: relative; padding-block: clamp(56px, 9vw, 104px); }
-  .hero-kicker { color: var(--gold); font-weight: 700; font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; }
-  :root[data-lang="ko"] .hero-kicker { letter-spacing: .02em; font-size: .9rem; }
-  .hero h1 { margin: 14px 0 0; font-size: clamp(2.2rem, 5.4vw, 3.8rem); line-height: 1.08; font-weight: 800; letter-spacing: -.02em; max-width: 14em; }
-  :root[data-lang="ko"] .hero h1 { line-height: 1.25; letter-spacing: -.03em; }
-  .hero p.lead { margin-top: 20px; max-width: 34em; font-size: clamp(1.02rem, 1.6vw, 1.18rem); color: rgba(255, 255, 255, .88); }
-  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 13px 22px; font-weight: 700; font-size: .92rem; border: 2px solid transparent;
-  }
-  .btn:hover { text-decoration: none; }
-  .btn-primary { background: var(--gold); color: #0B2341; }
-  .btn-primary:hover { background: #F7C54E; }
-  .btn-ghost { border-color: rgba(255, 255, 255, .7); color: #fff; }
-  .btn-ghost:hover { background: rgba(255, 255, 255, .1); }
-  .credit { position: absolute; right: clamp(16px, 4vw, 40px); bottom: 10px; font-size: .7rem; color: rgba(255, 255, 255, .75); text-shadow: 0 1px 2px rgba(0, 0, 0, .5); }
-
-  /* ---------- stats band ---------- */
-  .stats { background: var(--navy); color: var(--on-navy); }
-  .stats ul { list-style: none; margin: 0 auto; padding-block: 28px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .stats li { padding-inline: 24px; border-left: 1px solid var(--navy-line); display: grid; gap: 4px; align-content: start; }
-  .stats li:first-child { border-left: 0; padding-left: 0; }
-  .stats strong { font-size: 2.3rem; line-height: 1; font-weight: 800; font-variant-numeric: tabular-nums; }
-  .stats strong small { font-size: 1rem; font-weight: 600; color: var(--gold); margin-left: 2px; }
-  .stats span { color: var(--on-navy-muted); font-size: .88rem; line-height: 1.4; }
-
-  /* ---------- body layout ---------- */
-  .layout { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 56px; padding-block: 56px 72px; align-items: start; }
-
-  /* profile sidebar */
-  .profile { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 96px); background: var(--alt); border-top: 4px solid var(--navy); }
-  .profile-head { padding: 28px 24px 22px; display: grid; justify-items: center; text-align: center; gap: 10px; border-bottom: 1px solid var(--line); }
-  .photo {
-    width: 128px; height: 128px; border-radius: 50%; overflow: hidden;
-    display: grid; place-items: center;
-    background: var(--navy) url("assets/hero.jpg") 30% 40% / 420% no-repeat;
-    color: #fff; font-size: 2.2rem; font-weight: 800; letter-spacing: .02em;
-    box-shadow: 0 0 0 4px var(--page), 0 0 0 5px var(--line);
-  }
-  .photo span { text-shadow: 0 1px 6px rgba(8, 26, 49, .8); }
-  .photo img { width: 100%; height: 100%; object-fit: cover; }
-  .profile-name { font-size: 1.3rem; font-weight: 800; line-height: 1.2; }
-  .profile-role { color: var(--muted); font-size: .88rem; line-height: 1.45; }
-  .side-blocks { display: grid; }
-  .block { padding: 20px 24px; border-bottom: 1px solid var(--line); display: grid; gap: 10px; }
-  .block:last-child { border-bottom: 0; }
-  .block-title { margin: 0; font-size: .74rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--navy); }
-  :root[data-theme="dark"] .block-title { color: var(--gold); }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .block-title { color: var(--gold); } }
-  :root[data-lang="ko"] .block-title { letter-spacing: .02em; font-size: .82rem; }
-  .side-blocks ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: .88rem; line-height: 1.45; }
-  .contact-list a { word-break: break-all; }
-  .link-list a { display: flex; justify-content: space-between; gap: 10px; font-weight: 600; }
-  .link-list a::after { content: "›"; color: var(--muted); font-weight: 400; }
-  .edu { display: grid; gap: 12px; }
-  .edu div { display: grid; gap: 1px; }
-  .edu strong { font-size: .88rem; font-weight: 700; line-height: 1.35; }
-  .edu span, .edu time { color: var(--muted); font-size: .82rem; line-height: 1.4; }
-  .interest-list li { padding-left: 14px; position: relative; }
-  .interest-list li::before { content: ""; position: absolute; left: 0; top: .6em; width: 6px; height: 6px; background: var(--gold); }
-
-  /* main content */
-  main { min-width: 0; display: grid; gap: 64px; }
-  main section { scroll-margin-top: 100px; }
-  .sec-title { margin: 0 0 28px; font-size: 1.75rem; font-weight: 800; line-height: 1.2; letter-spacing: -.01em; }
-  .sec-title::before { content: ""; display: block; width: 40px; height: 4px; background: var(--gold); margin-bottom: 14px; }
-  h3 { margin: 0; font-size: 1.06rem; font-weight: 700; line-height: 1.4; }
-  .sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px 24px; margin-bottom: 28px; }
-  .sec-head .sec-title { margin: 0; }
-
-  .lede { font-size: 1.16rem; line-height: 1.65; max-width: 40em; font-weight: 500; }
-  .lede em { font-style: normal; color: var(--blue); }
-  .prose { max-width: 42em; display: grid; gap: 14px; margin-top: 16px; color: var(--muted); }
-
-  .iso { margin-top: 32px; max-width: 640px; padding: 20px 22px; background: var(--alt); }
-  .iso-bar { height: 10px; background: linear-gradient(90deg, #8ED1DC, #3E97C1 35%, #1D5BB8 70%, #0B2341); }
-  .iso-scale { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 8px; font-size: .74rem; line-height: 1.35; color: var(--muted); }
-  .iso-scale span:nth-child(2), .iso-scale span:nth-child(3) { text-align: center; }
-  .iso-scale span:last-child { text-align: right; }
-  .iso-scale b { display: block; color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
-  .iso-cap { margin-top: 10px; font-size: .84rem; line-height: 1.5; color: var(--muted); }
-
-  /* news: notice-board list */
-  .news { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
-  .news li { display: grid; grid-template-columns: 84px 92px minmax(0, 1fr); gap: 16px; align-items: baseline; padding: 14px 4px; border-bottom: 1px solid var(--line); }
-  .news time { font-weight: 700; color: var(--blue); font-variant-numeric: tabular-nums; font-size: .9rem; }
-  .badge { justify-self: start; font-size: .72rem; font-weight: 700; padding: 3px 8px; background: var(--blue-soft); color: var(--blue); white-space: nowrap; }
-  .badge.muted { background: transparent; color: var(--muted); box-shadow: inset 0 0 0 1px var(--line); }
-  .news p { font-size: .95rem; }
-
-  /* research */
-  .feature { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 32px; padding: 28px; background: var(--navy); color: var(--on-navy); margin-bottom: 36px; }
-  .feature h3 { font-size: 1.3rem; color: #fff; }
-  .feature-text { display: grid; gap: 12px; align-content: start; }
-  .feature-text p { color: var(--on-navy-muted); }
-  .feature .kicker { color: var(--gold); }
-  .links { display: grid; align-content: start; font-size: .9rem; }
-  .links a { display: flex; justify-content: space-between; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--navy-line); color: #fff; font-weight: 600; }
-  .links a:first-child { padding-top: 0; }
-  .links a span:last-child { color: var(--on-navy-muted); font-weight: 400; }
-  .research-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-  .research-item { display: grid; gap: 8px; align-content: start; padding: 0 0 24px; background: var(--alt); overflow: hidden; }
-  .research-item > :not(.r-img) { margin-inline: 24px; }
-  .research-item > .kicker { margin-top: 14px; }
-  .r-img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: transform .4s ease; }
-  .research-item:hover .r-img { transform: scale(1.03); }
-  @media (prefers-reduced-motion: reduce) { .r-img { transition: none; } .research-item:hover .r-img { transform: none; } }
-  .kicker { font-size: .74rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); }
-  :root[data-lang="ko"] .kicker { letter-spacing: .02em; font-size: .8rem; }
-  .research-item p { font-size: .95rem; color: var(--muted); }
-  .research-item ul { margin: 2px 0 0; padding-left: 1.1em; font-size: .92rem; display: grid; gap: 3px; }
-  .skills { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 10px 28px; margin: 32px 0 0; font-size: .94rem; }
-  .skills dt { font-weight: 700; }
-  .skills dd { margin: 0; color: var(--muted); }
-
-  /* data */
-  .data-list { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
-  .data-list li { border-bottom: 1px solid var(--line); }
-  .data-list a, .data-list .soon > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 24px; align-items: center; padding: 16px 4px; color: var(--ink); }
-  .data-list a:hover { text-decoration: none; background: var(--alt); }
-  .data-list a:hover strong { color: var(--blue); }
-  .d-main { display: grid; gap: 2px; }
-  .d-main strong { font-weight: 700; }
-  .d-main > span { color: var(--muted); font-size: .92rem; }
-  .d-src { font-size: .78rem; font-weight: 700; color: var(--blue); white-space: nowrap; }
-  .data-list a .d-src::after { content: " →"; }
-  .soon .d-src { color: var(--muted); padding: 3px 8px; box-shadow: inset 0 0 0 1px var(--line); }
-
-  /* publications */
-  .pub-tools { display: flex; flex-wrap: wrap; gap: 6px; }
-  .chip { font: 600 .82rem/1 var(--font); padding: 9px 14px; border: 1px solid var(--line); background: var(--page); color: var(--muted); cursor: pointer; }
-  .chip:hover { color: var(--ink); border-color: var(--muted); }
-  .chip[aria-pressed="true"] { background: var(--navy); color: #fff; border-color: var(--navy); }
-  .pub-year { display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 24px; padding-block: 22px; border-top: 1px solid var(--line); }
-  .pub-year:first-of-type { border-top: 2px solid var(--ink); }
-  .pub-year > h3 { font-size: 1rem; font-weight: 800; color: var(--blue); }
-  .pub-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
-  .pub { font-size: .94rem; line-height: 1.55; }
-  .pub .t { display: block; font-weight: 700; color: var(--ink); }
-  .pub .a { color: var(--muted); }
-  .pub .a b { color: var(--ink); font-weight: 700; }
-  .pub .j { font-style: italic; }
-  .pub .doi { font-size: .78rem; font-weight: 600; margin-left: 4px; text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
-  .review-note { color: var(--muted); font-size: .9rem; margin-bottom: 12px; }
-  .review-list { display: flex; flex-wrap: wrap; gap: 8px; }
-  .review-list .pub { font-style: italic; font-size: .88rem; line-height: 1.3; padding: 8px 12px; background: var(--alt); }
-
-  /* talks, outreach */
-  .plain-list { list-style: none; margin: 0; padding: 0; display: grid; font-size: .94rem; }
-  .plain-list li { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 16px; padding-block: 11px; border-bottom: 1px solid var(--line); }
-  .plain-list li:first-child { border-top: 2px solid var(--ink); }
-  .yr { font-weight: 700; color: var(--blue); font-variant-numeric: tabular-nums; font-size: .88rem; }
-  .talk-type { font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 2px 6px; margin-left: 8px; background: var(--blue-soft); color: var(--blue); white-space: nowrap; vertical-align: 1px; }
-  .two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
-  .col-title { font-weight: 800; font-size: 1.05rem; margin: 0 0 12px; }
-
-  /* timeline */
-  .timeline { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--ink); }
-  .timeline > li { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 24px; padding-block: 20px; border-bottom: 1px solid var(--line); }
-  .when { font-weight: 700; color: var(--blue); font-size: .88rem; font-variant-numeric: tabular-nums; line-height: 1.8; }
-  .what { display: grid; gap: 3px; }
-  .where { color: var(--muted); font-size: .93rem; }
-  .what ul { margin: 6px 0 0; padding-left: 1.1em; font-size: .93rem; display: grid; gap: 3px; }
-
-  /* footer */
-  .site-footer { background: var(--navy-2); color: var(--on-navy-muted); font-size: .9rem; }
-  .site-footer a { color: var(--on-navy); }
-  .foot-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(0, 1fr)); gap: 40px; padding-block: 48px 36px; }
-  .foot-grid h2 { margin: 0 0 12px; font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
-  .foot-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
-  .foot-name { color: #fff; font-size: 1.2rem; font-weight: 800; margin-bottom: 6px; }
-  .copy { border-top: 1px solid var(--navy-line); padding-block: 18px; font-size: .78rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
-
-  [hidden] { display: none !important; }
-
-  @media (max-width: 980px) {
-    .layout { grid-template-columns: minmax(0, 1fr); gap: 48px; }
-    .profile { position: static; }
-    .profile-head { grid-template-columns: auto minmax(0, 1fr); justify-items: start; text-align: left; align-items: center; column-gap: 20px; }
-    .profile-head .photo { grid-row: span 2; width: 96px; height: 96px; font-size: 1.7rem; }
-    .side-blocks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .block:nth-child(odd) { border-right: 1px solid var(--line); }
-    .utility .where-txt { display: none; }
-  }
-  @media (max-width: 760px) {
-    .site-header .container { flex-wrap: wrap; gap: 0; padding-top: 12px; }
-    .site-nav { flex-basis: 100%; margin-left: -12px; }
-    .site-nav a { padding: 12px 12px 10px; }
-    main section { scroll-margin-top: 120px; }
-    .stats ul { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 20px; }
-    .stats li:nth-child(3) { border-left: 0; padding-left: 0; }
-    .feature, .research-grid, .two-col, .foot-grid { grid-template-columns: minmax(0, 1fr); }
-    .hero::before { background: linear-gradient(90deg, rgba(8, 26, 49, .92), rgba(8, 26, 49, .7)); }
-  }
-  @media (max-width: 560px) {
-    .side-blocks { grid-template-columns: minmax(0, 1fr); }
-    .block:nth-child(odd) { border-right: 0; }
-    .pub-year, .timeline > li { grid-template-columns: minmax(0, 1fr); gap: 6px; }
-    .news li { grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; }
-    .news li p { grid-column: 1 / -1; }
-    .plain-list li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
-    .data-list a, .data-list .soon > div { grid-template-columns: minmax(0, 1fr); }
-    .feature { padding: 20px; }
-    .research-item > :not(.r-img) { margin-inline: 20px; }
-    .iso-scale { font-size: .64rem; }
-    .stats strong { font-size: 1.9rem; }
-  }
-  /* ---------- small screens ---------- */
-  .mobile-only { display: none; }
-  .to-top {
-    position: fixed; z-index: 30;
-    right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-    width: 44px; height: 44px; display: grid; place-items: center;
-    background: var(--navy); color: #fff; font-size: 1.1rem; font-weight: 700;
-    box-shadow: 0 4px 14px rgba(8, 26, 49, .3);
-  }
-  .to-top:hover { text-decoration: none; background: var(--blue); }
-  @media (max-width: 980px) {
-    .mobile-only { display: revert; }
-    /* short profile card first, main content next, full profile details last */
-    .layout > .profile { display: contents; }
-    .profile-head { order: 0; background: var(--alt); border-top: 4px solid var(--navy); border-bottom: 0; }
-    .layout > main { order: 1; }
-    .side-title { order: 2; margin: 0 0 -20px; }
-    .side-blocks { order: 3; background: var(--alt); }
-    .quick-links { display: flex; flex-wrap: wrap; gap: 8px; grid-column: 1 / -1; margin-top: 6px; }
-    .quick-links a {
-      flex: 1 1 0; text-align: center; padding: 10px 12px; min-width: 84px;
-      background: var(--page); box-shadow: inset 0 0 0 1px var(--line);
-      font-weight: 700; font-size: .88rem; color: var(--ink);
-    }
-    .quick-links a:first-child { background: var(--navy); color: #fff; box-shadow: none; }
-    .quick-links a:hover { text-decoration: none; }
-  }
-  @media (max-width: 760px) {
-    .site-header .container { min-height: 0; }
-    .logo { padding-block: 2px 4px; }
-    .site-nav { -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent); mask-image: linear-gradient(90deg, #000 82%, transparent); padding-right: 32px; }
-    .site-nav a { font-size: .9rem; padding: 10px 11px 9px; }
-    .hero .container { padding-block: 44px 52px; }
-    .hero-actions .btn { flex: 1 1 auto; justify-content: center; padding-inline: 16px; white-space: nowrap; }
-    .credit { font-size: .64rem; }
-    .stats ul { padding-block: 24px; }
-    .stats li { padding-inline: 16px; }
-    .layout { padding-block: 32px 56px; gap: 40px; }
-    main { gap: 52px; }
-    .sec-title { font-size: 1.5rem; margin-bottom: 20px; }
-    .lede { font-size: 1.06rem; }
-    .iso { padding: 16px; }
-    .research-grid { gap: 16px; }
-  }
-</style>
+<meta property="og:url" content="https://hayoungbong.github.io/">
+<meta property="og:image" content="https://hayoungbong.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="assets/fonts/libre-franklin-latin-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/theme.js"></script>
+<script src="assets/site.js" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "Hayoung Bong", "alternateName": "봉하영", "url": "https://hayoungbong.github.io/", "image": "https://hayoungbong.github.io/assets/og.jpg", "jobTitle": "NASA Postdoctoral Program Fellow", "description": "Climate scientist studying the global water cycle with isotope-enabled climate models.", "worksFor": {"@type": "Organization", "name": "NASA Goddard Institute for Space Studies", "url": "https://www.giss.nasa.gov/"}, "alumniOf": [{"@type": "CollegeOrUniversity", "name": "The University of Tokyo"}, {"@type": "CollegeOrUniversity", "name": "Université Paris-Saclay"}, {"@type": "CollegeOrUniversity", "name": "Yonsei University"}], "knowsAbout": ["Water isotope modeling", "Climate modeling", "ENSO", "Paleoclimate", "Model intercomparison", "Deep learning"], "knowsLanguage": ["ko", "en", "fr", "ja"], "email": "mailto:hayoung.bong@nasa.gov", "sameAs": ["https://scholar.google.com/citations?user=DOV5vZwAAAAJ", "https://www.researchgate.net/profile/Hayoung-Bong", "https://science.gsfc.nasa.gov/sci/bio/hayoung.bong", "https://www.giss.nasa.gov/staff/hbong.html"]}</script>
 </head>
 <body>
+<a class="skip" href="#about">Skip to content</a>
 
 <div class="utility">
   <div class="container">
     <span class="where-txt"><span class="en">NASA Goddard Institute for Space Studies · New York</span><span class="ko">NASA 고다드 우주연구소 · 미국 뉴욕</span></span>
     <div class="utility-links">
-      <a href="https://scholar.google.com/citations?user=DOV5vZwAAAAJ&amp;hl=en">Google Scholar</a>
+      <a href="https://scholar.google.com/citations?user=DOV5vZwAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
       <div class="lang" role="group" aria-label="Language">
         <button type="button" id="lang-ko" data-lang="ko" aria-pressed="false">KOR</button>
         <button type="button" id="lang-en" data-lang="en" aria-pressed="true">ENG</button>
@@ -427,8 +96,8 @@
       <p class="profile-role"><span class="en">NASA Postdoctoral Program Fellow<br>Goddard Institute for Space Studies</span><span class="ko">NASA 박사후연구원 (NPP Fellow)<br>NASA 고다드 우주연구소</span></p>
       <div class="quick-links mobile-only">
         <a href="mailto:hayoung.bong@nasa.gov">Email</a>
-        <a href="https://scholar.google.com/citations?user=DOV5vZwAAAAJ&amp;hl=en">Scholar</a>
-        <a href="https://science.gsfc.nasa.gov/sci/bio/hayoung.bong">NASA</a>
+        <a href="https://scholar.google.com/citations?user=DOV5vZwAAAAJ&amp;hl=en" target="_blank" rel="noopener">Scholar</a>
+        <a href="https://science.gsfc.nasa.gov/sci/bio/hayoung.bong" target="_blank" rel="noopener">NASA</a>
       </div>
     </div>
     <h2 class="sec-title mobile-only side-title"><span class="en">Profile</span><span class="ko">프로필</span></h2>
@@ -438,18 +107,18 @@
         <ul class="contact-list">
           <li><a href="mailto:hayoung.bong@nasa.gov">hayoung.bong@nasa.gov</a></li>
           <li><a href="mailto:bonghy21@gmail.com">bonghy21@gmail.com</a></li>
-          <li style="color:var(--muted)"><span class="en">NASA GISS, New York, NY</span><span class="ko">NASA GISS, 미국 뉴욕</span></li>
+          <li class="place"><span class="en">NASA GISS, New York, NY</span><span class="ko">NASA GISS, 미국 뉴욕</span></li>
         </ul>
       </div>
 
       <div class="block">
         <h2 class="block-title"><span class="en">Profiles</span><span class="ko">프로필 링크</span></h2>
         <ul class="link-list">
-          <li><a href="https://scholar.google.com/citations?user=DOV5vZwAAAAJ&amp;hl=en">Google Scholar</a></li>
-          <li><a href="https://www.researchgate.net/profile/Hayoung-Bong">ResearchGate</a></li>
-          <li><a href="https://science.gsfc.nasa.gov/sci/bio/hayoung.bong"><span class="en">NASA Science bio</span><span class="ko">NASA 연구자 소개</span></span></a></li>
-          <li><a href="https://www.giss.nasa.gov/staff/hbong.html"><span class="en">NASA GISS staff page</span><span class="ko">NASA GISS 직원 페이지</span></a></li>
-          <li><a href="https://data.giss.nasa.gov/wisomip/">WisoMIP</a></li>
+          <li><a href="https://scholar.google.com/citations?user=DOV5vZwAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></li>
+          <li><a href="https://www.researchgate.net/profile/Hayoung-Bong" target="_blank" rel="noopener">ResearchGate</a></li>
+          <li><a href="https://science.gsfc.nasa.gov/sci/bio/hayoung.bong" target="_blank" rel="noopener"><span class="en">NASA Science bio</span><span class="ko">NASA 연구자 소개</span></span></a></li>
+          <li><a href="https://www.giss.nasa.gov/staff/hbong.html" target="_blank" rel="noopener"><span class="en">NASA GISS staff page</span><span class="ko">NASA GISS 직원 페이지</span></a></li>
+          <li><a href="https://data.giss.nasa.gov/wisomip/" target="_blank" rel="noopener">WisoMIP</a></li>
         </ul>
       </div>
 
@@ -502,7 +171,7 @@
           <span class="ko"><em>물 동위원소 기후모델</em>로 전 지구 물순환을 연구합니다. 바다에서 증발한 수증기가 비가 되어 내리기까지의 경로를 추적하고, 과거와 현재의 기후를 연결해 앞으로의 지구 시스템 변화를 이해하고자 합니다.</span>
         </p>
         <div class="prose">
-          <p><span class="en">I am a NASA Postdoctoral Program Fellow at the Goddard Institute for Space Studies (GISS) in New York, working with Dr. Allegra N. LeGrande, and I lead the international <a href="https://data.giss.nasa.gov/wisomip/">Water Isotope Model Intercomparison Project (WisoMIP)</a>. I have run CMIP climate models at IPSL (France), MIROC (Japan) and NASA GISS (USA).</span><span class="ko">현재 미국 뉴욕 NASA 고다드 우주연구소(GISS)에서 Allegra N. LeGrande 박사와 함께 NASA 박사후연구원으로 일하고 있으며, 국제 <a href="https://data.giss.nasa.gov/wisomip/">물 동위원소 모델 상호비교 프로젝트(WisoMIP)</a>를 이끌고 있습니다. 프랑스 IPSL, 일본 MIROC, 미국 NASA GISS의 CMIP 기후모델을 직접 운용해 왔습니다.</span></p>
+          <p><span class="en">I am a NASA Postdoctoral Program Fellow at the Goddard Institute for Space Studies (GISS) in New York, working with Dr. Allegra N. LeGrande, and I lead the international <a href="https://data.giss.nasa.gov/wisomip/" target="_blank" rel="noopener">Water Isotope Model Intercomparison Project (WisoMIP)</a>. I have run CMIP climate models at IPSL (France), MIROC (Japan) and NASA GISS (USA).</span><span class="ko">현재 미국 뉴욕 NASA 고다드 우주연구소(GISS)에서 Allegra N. LeGrande 박사와 함께 NASA 박사후연구원으로 일하고 있으며, 국제 <a href="https://data.giss.nasa.gov/wisomip/" target="_blank" rel="noopener">물 동위원소 모델 상호비교 프로젝트(WisoMIP)</a>를 이끌고 있습니다. 프랑스 IPSL, 일본 MIROC, 미국 NASA GISS의 CMIP 기후모델을 직접 운용해 왔습니다.</span></p>
         </div>
 
         <div class="iso" role="img" aria-label="Illustrative scale of oxygen-18 depletion in water, from about 0 per mil in ocean water to about minus 50 per mil in polar ice.">
@@ -531,7 +200,7 @@
           <li><time datetime="2026-03">2026.03</time><span class="badge"><span class="en">Talk</span><span class="ko">발표</span></span>
             <p><span class="en">Presented WisoMIP at the CMIP Community Workshop in Kyoto.</span><span class="ko">교토 CMIP 커뮤니티 워크숍에서 WisoMIP 발표</span></p></li>
           <li><time datetime="2026">2026</time><span class="badge"><span class="en">Paper</span><span class="ko">논문</span></span>
-            <p><span class="en">WisoMIP Phase 1 published in <i>JGR: Atmospheres</i>, with a <a href="https://www.iis.u-tokyo.ac.jp/en/news/4990/">press release</a> from UTokyo IIS.</span><span class="ko">WisoMIP 1단계 논문 <i>JGR: Atmospheres</i> 게재, 도쿄대 생산기술연구소 <a href="https://www.iis.u-tokyo.ac.jp/ja/news/4990/">보도자료</a> 발표</span></p></li>
+            <p><span class="en">WisoMIP Phase 1 published in <i>JGR: Atmospheres</i>, with a <a href="https://www.iis.u-tokyo.ac.jp/en/news/4990/" target="_blank" rel="noopener">press release</a> from UTokyo IIS.</span><span class="ko">WisoMIP 1단계 논문 <i>JGR: Atmospheres</i> 게재, 도쿄대 생산기술연구소 <a href="https://www.iis.u-tokyo.ac.jp/ja/news/4990/" target="_blank" rel="noopener">보도자료</a> 발표</span></p></li>
           <li><time datetime="2026-01">2026.01</time><span class="badge"><span class="en">Outreach</span><span class="ko">대중강연</span></span>
             <p><span class="en">Spoke at the NASA–SVA “Earthrise / Artemis” exhibition in New York.</span><span class="ko">뉴욕 NASA–SVA “Earthrise / Artemis” 전시 행사 강연</span></p></li>
         </ul>
@@ -548,16 +217,16 @@
             <p><span class="en">An international comparison of isotope-enabled climate models. I coordinated teams across institutions, set shared protocols and data formats, and put in place new boundary conditions. Phase 1 compares present-day simulations against a global observation network.</span><span class="ko">동위원소 기후모델을 비교하는 국제 공동 프로젝트입니다. 여러 기관의 연구팀을 조율하고, 공통 실험 규약과 자료 형식을 정하고, 새로운 경계조건을 적용했습니다. 1단계에서는 현재 기후 모의 결과를 전 지구 관측망과 비교합니다.</span></p>
           </div>
           <div class="links">
-            <a href="https://data.giss.nasa.gov/wisomip/"><span><span class="en">Project site</span><span class="ko">프로젝트 사이트</span></span><span>data.giss.nasa.gov</span></a>
-            <a href="https://doi.org/10.1029/2025JD044985"><span>Bong et al. 2026</span><span>JGR</span></a>
-            <a href="http://portal.nccs.nasa.gov/datashare/giss-publish/pub/paleoclimate/wisomip"><span><span class="en">Phase 1 dataset</span><span class="ko">1단계 자료</span></span><span>NCCS</span></a>
-            <a href="https://www.iis.u-tokyo.ac.jp/en/news/4990/"><span><span class="en">Press release</span><span class="ko">보도자료</span></span><span>UTokyo IIS</span></a>
+            <a href="https://data.giss.nasa.gov/wisomip/" target="_blank" rel="noopener"><span><span class="en">Project site</span><span class="ko">프로젝트 사이트</span></span><span>data.giss.nasa.gov</span></a>
+            <a href="https://doi.org/10.1029/2025JD044985" target="_blank" rel="noopener"><span>Bong et al. 2026</span><span>JGR</span></a>
+            <a href="https://portal.nccs.nasa.gov/datashare/giss-publish/pub/paleoclimate/wisomip/" target="_blank" rel="noopener"><span><span class="en">Phase 1 dataset</span><span class="ko">1단계 자료</span></span><span>NCCS</span></a>
+            <a href="https://www.iis.u-tokyo.ac.jp/en/news/4990/" target="_blank" rel="noopener"><span><span class="en">Press release</span><span class="ko">보도자료</span></span><span>UTokyo IIS</span></a>
           </div>
         </article>
 
         <div class="research-grid">
           <div class="research-item">
-            <img class="r-img" src="assets/r-present.jpg" alt="NASA AIRS view of atmospheric river storms reaching California" loading="lazy" width="800" height="450">
+            <img class="r-img" src="assets/r-present.jpg" alt="NASA AIRS view of atmospheric river storms reaching California" loading="lazy" decoding="async" width="800" height="450">
             <span class="kicker"><span class="en">Present-day climate</span><span class="ko">현재 기후</span></span>
             <h3><span class="en">Reanalysis-nudged isotope simulations</span><span class="ko">재분석 너징 동위원소 모의</span></h3>
             <p><span class="en">85-year simulations (1940–present) with several isotope-enabled models, each nudged to different reanalyses, to see how that choice shapes simulated isotopes.</span><span class="ko">여러 동위원소 모델을 서로 다른 재분석 자료로 너징해 85년(1940–현재) 모의를 수행하고, 재분석 선택이 동위원소 모의에 주는 영향을 분석합니다.</span></p>
@@ -567,7 +236,7 @@
             </ul>
           </div>
           <div class="research-item">
-            <img class="r-img" src="assets/r-paleo.jpg" alt="Meltwater ponds on the Greenland ice sheet" loading="lazy" width="800" height="450">
+            <img class="r-img" src="assets/r-paleo.jpg" alt="Meltwater ponds on the Greenland ice sheet" loading="lazy" decoding="async" width="800" height="450">
             <span class="kicker"><span class="en">Paleoclimate</span><span class="ko">고기후</span></span>
             <h3><span class="en">Coupled atmosphere–ocean isotope modeling</span><span class="ko">대기–해양 결합 동위원소 모델링</span></h3>
             <p><span class="en">Coupled atmosphere and ocean models with water isotopes to simulate key past periods and help interpret paleoclimate records.</span><span class="ko">물 동위원소를 포함한 대기–해양 결합 모델로 주요 과거 기후를 모의하고 고기후 기록 해석을 돕습니다.</span></p>
@@ -577,13 +246,13 @@
             </ul>
           </div>
           <div class="research-item">
-            <img class="r-img" src="assets/r-fronts.jpg" alt="Satellite view of a cold front along the U.S. East Coast" loading="lazy" width="800" height="450">
+            <img class="r-img" src="assets/r-fronts.jpg" alt="Satellite view of a cold front along the U.S. East Coast" loading="lazy" decoding="async" width="800" height="450">
             <span class="kicker"><span class="en">Machine learning</span><span class="ko">머신러닝</span></span>
             <h3><span class="en">Deep-learning front detection</span><span class="ko">딥러닝 기반 전선 탐지</span></h3>
             <p><span class="en">Trained a U-Net on ERA5 to detect atmospheric fronts, building a global 6-hourly, 0.25° front catalog, and tested how well it transfers across models.</span><span class="ko">ERA5로 U-Net 전선 탐지 모델을 학습해 전 지구 6시간·0.25° 해상도 전선 카탈로그를 구축하고, 다른 모델로의 전이 성능을 검증했습니다.</span></p>
           </div>
           <div class="research-item">
-            <img class="r-img" src="assets/r-enso.jpg" alt="Sea level anomaly in the Pacific during the 1997 El Niño" loading="lazy" width="800" height="450">
+            <img class="r-img" src="assets/r-enso.jpg" alt="Sea level anomaly in the Pacific during the 1997 El Niño" loading="lazy" decoding="async" width="800" height="450">
             <span class="kicker"><span class="en">Climate dynamics</span><span class="ko">기후 역학</span></span>
             <h3><span class="en">ENSO and its past states</span><span class="ko">ENSO와 과거 기후</span></h3>
             <p><span class="en">Bjerknes stability analysis of ENSO changes, including why ENSO was weaker during the mid-Holocene in PMIP models.</span><span class="ko">Bjerknes 안정도 지수로 ENSO 변화를 분석하고, PMIP 모델에서 홀로세 중기 ENSO가 약했던 원인을 밝혔습니다.</span></p>
@@ -602,16 +271,16 @@
       <section id="data">
         <h2 class="sec-title"><span class="en">Data &amp; resources</span><span class="ko">자료 및 데이터</span></h2>
         <ul class="data-list">
-          <li><a href="https://data.giss.nasa.gov/wisomip/">
+          <li><a href="https://data.giss.nasa.gov/wisomip/" target="_blank" rel="noopener">
             <span class="d-main"><strong>WisoMIP</strong><span><span class="en">Water Isotope Model Intercomparison Project: protocols, participating models and data access</span><span class="ko">물 동위원소 모델 상호비교 프로젝트: 실험 규약, 참여 모델, 자료 안내</span></span></span>
             <span class="d-src">NASA GISS Data</span></a></li>
-          <li><a href="http://portal.nccs.nasa.gov/datashare/giss-publish/pub/paleoclimate/wisomip">
+          <li><a href="https://portal.nccs.nasa.gov/datashare/giss-publish/pub/paleoclimate/wisomip/" target="_blank" rel="noopener">
             <span class="d-main"><strong><span class="en">WisoMIP Phase 1 model output</span><span class="ko">WisoMIP 1단계 모델 자료</span></strong><span><span class="en">Present-day isotope-enabled simulations from all participating models</span><span class="ko">참여 모델 전체의 현재 기후 동위원소 모의 결과</span></span></span>
             <span class="d-src">NASA NCCS</span></a></li>
-          <li><a href="https://doi.org/10.5281/zenodo.14681370">
+          <li><a href="https://doi.org/10.5281/zenodo.14681370" target="_blank" rel="noopener">
             <span class="d-main"><strong><span class="en">IsoGSM4 high-resolution isotope simulations</span><span class="ko">IsoGSM4 고해상도 동위원소 모의 자료</span></strong><span><span class="en">Downscaled (~50 km) reanalysis-nudged water isotopes, 1940–2024</span><span class="ko">약 50 km 상세화 재분석 너징 물 동위원소, 1940–2024</span></span></span>
             <span class="d-src">Zenodo</span></a></li>
-          <li><a href="https://doi.org/10.5281/zenodo.10624474">
+          <li><a href="https://doi.org/10.5281/zenodo.10624474" target="_blank" rel="noopener">
             <span class="d-main"><strong><span class="en">Isotope model intercomparison dataset</span><span class="ko">동위원소 모델 상호비교 자료</span></strong><span><span class="en">Nudged simulations from Bong et al. (2024), JGR: Atmospheres</span><span class="ko">Bong et al. (2024) JGR: Atmospheres 너징 모의 자료</span></span></span>
             <span class="d-src">Zenodo</span></a></li>
           <li class="soon"><div>
@@ -650,15 +319,15 @@
         <div class="pub-year" data-status="published">
         <h3>2026</h3>
         <ul class="pub-list">
-          <li class="pub first"><span class="t">Water Isotope Model Intercomparison Project (WisoMIP): Present-day climate</span> <span class="a"><b>Bong, H.</b>, LeGrande, A. N., Dee, S., Zhu, J., Cauquoin, A., et al., &amp; Schmidt, G. A.</span> <span class="j">Journal of Geophysical Research: Atmospheres</span>, 131, e2025JD044985. <a class="doi" href="https://doi.org/10.1029/2025JD044985">doi</a></li>
-          <li class="pub"><span class="t">Weakened isotope altitude gradient in Central Asian water tower: Role of topography and local circulation</span> <span class="a">Shi, Y., Wang, S., Liu, X., Yoshimura, K., <b>Bong, H.</b>, et al.</span> <span class="j">Water Resources Research</span>, 62, e2025WR040283. <a class="doi" href="https://doi.org/10.1029/2025WR040283">doi</a></li>
-          <li class="pub"><span class="t">ENSO modulated upstream convection as the primary control on interannual δ¹⁸O variability in East Asia</span> <span class="a">Sinha, A., Cheng, J., Li, H., Masahiro, T., <b>Bong, H.</b>, et al.</span> <span class="j">npj Climate and Atmospheric Science</span>. <a class="doi" href="https://doi.org/10.1038/s41612-026-01333-8">doi</a></li>
-          <li class="pub"><span class="t">Coupling an isotope-enabled global spectral model (IsoGSM) with hydrological modelling using streamflow-isotope-based correction</span> <span class="a">Guamán, S., Pesántez, J., Birkel, C., et al. incl. <b>Bong, H.</b></span> <span class="j">Hydrological Processes</span>. <a class="doi" href="https://doi.org/10.1002/hyp.70478">doi</a></li>
-          <li class="pub"><span class="t">Leaf wax hydrogen isotopes reflect storm track position over western North America</span> <span class="a">Bhattacharya, T., Fastovich, D., et al. incl. <b>Bong, H.</b></span> <span class="j">Paleoceanography and Paleoclimatology</span>. <a class="doi" href="https://doi.org/10.1029/2025PA005342">doi</a></li>
-          <li class="pub"><span class="t">Using stable isotopes in water vapor to determine the onset and retreat of the East Asian Summer Monsoon over the Loess Plateau</span> <span class="a">Zhang, Y., Shi, Y., Wang, S., <b>Bong, H.</b>, et al.</span> <span class="j">Journal of Hydrology</span>. <a class="doi" href="https://doi.org/10.1016/j.jhydrol.2026.135829">doi</a></li>
-          <li class="pub"><span class="t">Elevation-dependent hydrological vulnerability to evaporation loss in lakes and reservoirs of the Yarlung Zangbo River Basin, Tibetan Plateau</span> <span class="a">Wan, C., Chen, C., Skrzypek, G., et al. incl. <b>Bong, H.</b></span> <span class="j">Journal of Hydrology</span>. <a class="doi" href="https://doi.org/10.1016/j.jhydrol.2026.136253">doi</a></li>
-          <li class="pub"><span class="t">The significance of water vapor isotopes in improving weather prediction</span> <span class="a">Toride, K., Yoshimura, K., Schneider, M., Diekmann, C., Khosrawi, F., Ertl, B., &amp; <b>Bong, H.</b></span> <span class="j">Communications Earth &amp; Environment</span>. <a class="doi" href="https://doi.org/10.1038/s43247-026-03917-x">doi</a></li>
-          <li class="pub"><span class="t">WISO-SAT: A global database of stable hydrogen isotopes in water vapor from eight satellite missions</span> <span class="a">Sarkar, M., Dee, S., Frazer, M., et al. incl. <b>Bong, H.</b></span> <span class="j">Scientific Data</span>. <a class="doi" href="https://doi.org/10.1038/s41597-026-08218-8">doi</a></li>
+          <li class="pub first"><span class="t">Water Isotope Model Intercomparison Project (WisoMIP): Present-day climate</span> <span class="a"><b>Bong, H.</b>, LeGrande, A. N., Dee, S., Zhu, J., Cauquoin, A., et al., &amp; Schmidt, G. A.</span> <span class="j">Journal of Geophysical Research: Atmospheres</span>, 131, e2025JD044985. <a class="doi" href="https://doi.org/10.1029/2025JD044985" target="_blank" rel="noopener">doi</a></li>
+          <li class="pub"><span class="t">Weakened isotope altitude gradient in Central Asian water tower: Role of topography and local circulation</span> <span class="a">Shi, Y., Wang, S., Liu, X., Yoshimura, K., <b>Bong, H.</b>, et al.</span> <span class="j">Water Resources Research</span>, 62, e2025WR040283. <a class="doi" href="https://doi.org/10.1029/2025WR040283" target="_blank" rel="noopener">doi</a></li>
+          <li class="pub"><span class="t">ENSO modulated upstream convection as the primary control on interannual δ¹⁸O variability in East Asia</span> <span class="a">Sinha, A., Cheng, J., Li, H., Masahiro, T., <b>Bong, H.</b>, et al.</span> <span class="j">npj Climate and Atmospheric Science</span>. <a class="doi" href="https://doi.org/10.1038/s41612-026-01333-8" target="_blank" rel="noopener">doi</a></li>
+          <li class="pub"><span class="t">Coupling an isotope-enabled global spectral model (IsoGSM) with hydrological modelling using streamflow-isotope-based correction</span> <span class="a">Guamán, S., Pesántez, J., Birkel, C., et al. incl. <b>Bong, H.</b></span> <span class="j">Hydrological Processes</span>. <a class="doi" href="https://doi.org/10.1002/hyp.70478" target="_blank" rel="noopener">doi</a></li>
+          <li class="pub"><span class="t">Leaf wax hydrogen isotopes reflect storm track position over western North America</span> <span class="a">Bhattacharya, T., Fastovich, D., et al. incl. <b>Bong, H.</b></span> <span class="j">Paleoceanography and Paleoclimatology</span>. <a class="doi" href="https://doi.org/10.1029/2025PA005342" target="_blank" rel="noopener">doi</a></li>
+          <li class="pub"><span class="t">Using stable isotopes in water vapor to determine the onset and retreat of the East Asian Summer Monsoon over the Loess Plateau</span> <span class="a">Zhang, Y., Shi, Y., Wang, S., <b>Bong, H.</b>, et al.</span> <span class="j">Journal of Hydrology</span>. <a class="doi" href="https://doi.org/10.1016/j.jhydrol.2026.135829" target="_blank" rel="noopener">doi</a></li>
+          <li class="pub"><span class="t">Elevation-dependent hydrological vulnerability to evaporation loss in lakes and reservoirs of the Yarlung Zangbo River Basin, Tibetan Plateau</span> <span class="a">Wan, C., Chen, C., Skrzypek, G., et al. incl. <b>Bong, H.</b></span> <span class="j">Journal of Hydrology</span>. <a class="doi" href="https://doi.org/10.1016/j.jhydrol.2026.136253" target="_blank" rel="noopener">doi</a></li>
+          <li class="pub"><span class="t">The significance of water vapor isotopes in improving weather prediction</span> <span class="a">Toride, K., Yoshimura, K., Schneider, M., Diekmann, C., Khosrawi, F., Ertl, B., &amp; <b>Bong, H.</b></span> <span class="j">Communications Earth &amp; Environment</span>. <a class="doi" href="https://doi.org/10.1038/s43247-026-03917-x" target="_blank" rel="noopener">doi</a></li>
+          <li class="pub"><span class="t">WISO-SAT: A global database of stable hydrogen isotopes in water vapor from eight satellite missions</span> <span class="a">Sarkar, M., Dee, S., Frazer, M., et al. incl. <b>Bong, H.</b></span> <span class="j">Scientific Data</span>. <a class="doi" href="https://doi.org/10.1038/s41597-026-08218-8" target="_blank" rel="noopener">doi</a></li>
           <li class="pub"><span class="t">Temperature-sensitivity of water stable isotopes in global precipitation: a groundwater noble gas-based, paleoclimate perspective</span> <span class="a">Bekaert, D., Longeau, A., Risi, C., et al. incl. <b>Bong, H.</b></span> <span class="j">Advances in Geochemistry and Cosmochemistry</span>, accepted.</li>
         </ul>
       </div>
@@ -666,28 +335,28 @@
       <div class="pub-year" data-status="published">
         <h3>2025</h3>
         <ul class="pub-list">
-          <li class="pub"><span class="t">Modeling tritium release to the atmosphere during the Fukushima Daiichi Nuclear Power Plant accident and application to estimating post-accident water system transit times</span> <span class="a">Cauquoin, A., Gusyev, M., <b>Bong, H.</b>, Okazaki, A., &amp; Yoshimura, K.</span> <span class="j">Environmental Science and Pollution Research</span>, 32, 3649–3663. <a class="doi" href="https://doi.org/10.1007/s11356-025-35919-1">doi</a></li>
-          <li class="pub"><span class="t">Spatial pattern of amount effect of daily precipitation isotopes in China: A consideration of seasonality based on observation and simulation</span> <span class="a">Qian, Y., Wang, S., Zhang, M., Yoshimura, K., <b>Bong, H.</b>, et al.</span> <span class="j">Journal of Hydrology</span>, 653, 132793. <a class="doi" href="https://doi.org/10.1016/j.jhydrol.2025.132793">doi</a></li>
-          <li class="pub"><span class="t">Seasonal variability of isotopes and chemistry in a coastal firn core from the Amundsen Sea, West Antarctica</span> <span class="a">Shin, J., Han, Y., Hong, S.-B., et al. incl. <b>Bong, H.</b></span> <span class="j">New Zealand Journal of Geology and Geophysics</span>, 1–12. <a class="doi" href="https://doi.org/10.1080/00288306.2025.2510383">doi</a></li>
-          <li class="pub"><span class="t">Challenges in modeling synoptic-scale variability of stable isotopes in water vapor over the Southern Ocean</span> <span class="a">Kino, K., Okazaki, A., <b>Bong, H.</b>, &amp; Yoshimura, K.</span> <span class="j">Hydrological Research Letters</span>, 19, 112–119. <a class="doi" href="https://doi.org/10.3178/hrl.24-00034">doi</a></li>
+          <li class="pub"><span class="t">Modeling tritium release to the atmosphere during the Fukushima Daiichi Nuclear Power Plant accident and application to estimating post-accident water system transit times</span> <span class="a">Cauquoin, A., Gusyev, M., <b>Bong, H.</b>, Okazaki, A., &amp; Yoshimura, K.</span> <span class="j">Environmental Science and Pollution Research</span>, 32, 3649–3663. <a class="doi" href="https://doi.org/10.1007/s11356-025-35919-1" target="_blank" rel="noopener">doi</a></li>
+          <li class="pub"><span class="t">Spatial pattern of amount effect of daily precipitation isotopes in China: A consideration of seasonality based on observation and simulation</span> <span class="a">Qian, Y., Wang, S., Zhang, M., Yoshimura, K., <b>Bong, H.</b>, et al.</span> <span class="j">Journal of Hydrology</span>, 653, 132793. <a class="doi" href="https://doi.org/10.1016/j.jhydrol.2025.132793" target="_blank" rel="noopener">doi</a></li>
+          <li class="pub"><span class="t">Seasonal variability of isotopes and chemistry in a coastal firn core from the Amundsen Sea, West Antarctica</span> <span class="a">Shin, J., Han, Y., Hong, S.-B., et al. incl. <b>Bong, H.</b></span> <span class="j">New Zealand Journal of Geology and Geophysics</span>, 1–12. <a class="doi" href="https://doi.org/10.1080/00288306.2025.2510383" target="_blank" rel="noopener">doi</a></li>
+          <li class="pub"><span class="t">Challenges in modeling synoptic-scale variability of stable isotopes in water vapor over the Southern Ocean</span> <span class="a">Kino, K., Okazaki, A., <b>Bong, H.</b>, &amp; Yoshimura, K.</span> <span class="j">Hydrological Research Letters</span>, 19, 112–119. <a class="doi" href="https://doi.org/10.3178/hrl.24-00034" target="_blank" rel="noopener">doi</a></li>
         </ul>
       </div>
 
       <div class="pub-year" data-status="published">
         <h3>2024</h3>
         <ul class="pub-list">
-          <li class="pub first"><span class="t">Process-based intercomparison of water isotope-enabled models and reanalysis nudging effects</span> <span class="a"><b>Bong, H.</b>, Cauquoin, A., Okazaki, A., Chang, E.-C., Werner, M., Wei, Z., Yeo, N., &amp; Yoshimura, K.</span> <span class="j">Journal of Geophysical Research: Atmospheres</span>, 129, e2023JD038719. <a class="doi" href="https://doi.org/10.1029/2023JD038719">doi</a> <a class="doi" href="https://doi.org/10.5281/zenodo.10624474">dataset</a></li>
-          <li class="pub"><span class="t">Skill of isotope-enabled climate models for daily surface water vapour in East Asia</span> <span class="a">Wang, S., Qian, Y., Yoshimura, K., <b>Bong, H.</b>, et al.</span> <span class="j">Global and Planetary Change</span>, 239, 104502. <a class="doi" href="https://doi.org/10.1016/j.gloplacha.2024.104502">doi</a></li>
-          <li class="pub"><span class="t">Evaluating input data sources for isotope-enabled rainfall-runoff models</span> <span class="a">Watson, A., Birkel, C., Arciniega-Esparza, S., et al. incl. <b>Bong, H.</b></span> <span class="j">Hydrological Processes</span>, 38(9), e15276. <a class="doi" href="https://doi.org/10.1002/hyp.15276">doi</a></li>
+          <li class="pub first"><span class="t">Process-based intercomparison of water isotope-enabled models and reanalysis nudging effects</span> <span class="a"><b>Bong, H.</b>, Cauquoin, A., Okazaki, A., Chang, E.-C., Werner, M., Wei, Z., Yeo, N., &amp; Yoshimura, K.</span> <span class="j">Journal of Geophysical Research: Atmospheres</span>, 129, e2023JD038719. <a class="doi" href="https://doi.org/10.1029/2023JD038719" target="_blank" rel="noopener">doi</a> <a class="doi" href="https://doi.org/10.5281/zenodo.10624474" target="_blank" rel="noopener">dataset</a></li>
+          <li class="pub"><span class="t">Skill of isotope-enabled climate models for daily surface water vapour in East Asia</span> <span class="a">Wang, S., Qian, Y., Yoshimura, K., <b>Bong, H.</b>, et al.</span> <span class="j">Global and Planetary Change</span>, 239, 104502. <a class="doi" href="https://doi.org/10.1016/j.gloplacha.2024.104502" target="_blank" rel="noopener">doi</a></li>
+          <li class="pub"><span class="t">Evaluating input data sources for isotope-enabled rainfall-runoff models</span> <span class="a">Watson, A., Birkel, C., Arciniega-Esparza, S., et al. incl. <b>Bong, H.</b></span> <span class="j">Hydrological Processes</span>, 38(9), e15276. <a class="doi" href="https://doi.org/10.1002/hyp.15276" target="_blank" rel="noopener">doi</a></li>
         </ul>
       </div>
 
       <div class="pub-year" data-status="published">
         <h3><span class="en">Earlier</span><span class="ko">이전</span></h3>
         <ul class="pub-list">
-          <li class="pub"><span class="t">Feedback process responsible for the suppression of ENSO activity during the mid-Holocene</span> <span class="a">An, S.-I., &amp; <b>Bong, H.</b> (2018)</span> <span class="j">Theoretical and Applied Climatology</span>, 132, 779–790. <a class="doi" href="https://doi.org/10.1007/s00704-017-2117-6">doi</a></li>
-          <li class="pub"><span class="t">Inter-decadal change in El Niño–Southern Oscillation examined with Bjerknes stability index analysis</span> <span class="a">An, S.-I., &amp; <b>Bong, H.</b> (2015)</span> <span class="j">Climate Dynamics</span>, 47, 967–979. <a class="doi" href="https://doi.org/10.1007/s00382-015-2883-8">doi</a></li>
-          <li class="pub"><span class="t">On estimating interception storage capacity of litter layer at Gwangneung deciduous forest</span> <span class="a">Kang, M., Hong, J.-W., <b>Bong, H.</b>, et al. (2011)</span> <span class="j">Korean Journal of Agricultural and Forest Meteorology</span>, 13, 87–92. <a class="doi" href="https://doi.org/10.5532/KJAFM.2011.13.2.087">doi</a></li>
+          <li class="pub"><span class="t">Feedback process responsible for the suppression of ENSO activity during the mid-Holocene</span> <span class="a">An, S.-I., &amp; <b>Bong, H.</b> (2018)</span> <span class="j">Theoretical and Applied Climatology</span>, 132, 779–790. <a class="doi" href="https://doi.org/10.1007/s00704-017-2117-6" target="_blank" rel="noopener">doi</a></li>
+          <li class="pub"><span class="t">Inter-decadal change in El Niño–Southern Oscillation examined with Bjerknes stability index analysis</span> <span class="a">An, S.-I., &amp; <b>Bong, H.</b> (2015)</span> <span class="j">Climate Dynamics</span>, 47, 967–979. <a class="doi" href="https://doi.org/10.1007/s00382-015-2883-8" target="_blank" rel="noopener">doi</a></li>
+          <li class="pub"><span class="t">On estimating interception storage capacity of litter layer at Gwangneung deciduous forest</span> <span class="a">Kang, M., Hong, J.-W., <b>Bong, H.</b>, et al. (2011)</span> <span class="j">Korean Journal of Agricultural and Forest Meteorology</span>, 13, 87–92. <a class="doi" href="https://doi.org/10.5532/KJAFM.2011.13.2.087" target="_blank" rel="noopener">doi</a></li>
         </ul>
       </div>
       </section>
@@ -729,8 +398,8 @@
               <h3><span class="en">Ph.D. student</span><span class="ko">박사과정 연구원</span></h3>
               <span class="where"><span class="en">Institute of Industrial Science, The University of Tokyo · with Prof. Kei Yoshimura · joint diploma with UNU-IAS</span><span class="ko">도쿄대학교 생산기술연구소 · Kei Yoshimura 교수 · 유엔대학(UNU-IAS) 공동학위</span></span>
               <ul>
-                <li><span class="en">Intercomparison of water isotope-enabled atmospheric models (<a href="https://doi.org/10.5281/zenodo.10624474">dataset</a>)</span><span class="ko">물 동위원소 대기모델 상호비교 (<a href="https://doi.org/10.5281/zenodo.10624474">자료</a>)</span></li>
-                <li><span class="en">Downscaled isotope-enabled nudged simulations, 1940–2024 (<a href="https://doi.org/10.5281/zenodo.14681370">dataset</a>)</span><span class="ko">고해상도 동위원소 너징 모의, 1940–2024 (<a href="https://doi.org/10.5281/zenodo.14681370">자료</a>)</span></li>
+                <li><span class="en">Intercomparison of water isotope-enabled atmospheric models (<a href="https://doi.org/10.5281/zenodo.10624474" target="_blank" rel="noopener">dataset</a>)</span><span class="ko">물 동위원소 대기모델 상호비교 (<a href="https://doi.org/10.5281/zenodo.10624474" target="_blank" rel="noopener">자료</a>)</span></li>
+                <li><span class="en">Downscaled isotope-enabled nudged simulations, 1940–2024 (<a href="https://doi.org/10.5281/zenodo.14681370" target="_blank" rel="noopener">dataset</a>)</span><span class="ko">고해상도 동위원소 너징 모의, 1940–2024 (<a href="https://doi.org/10.5281/zenodo.14681370" target="_blank" rel="noopener">자료</a>)</span></li>
               </ul>
             </div>
           </li>
@@ -819,10 +488,10 @@
       <div>
         <h2><span class="en">Elsewhere</span><span class="ko">바로가기</span></h2>
         <ul>
-          <li><a href="https://scholar.google.com/citations?user=DOV5vZwAAAAJ&amp;hl=en">Google Scholar</a></li>
-          <li><a href="https://www.researchgate.net/profile/Hayoung-Bong">ResearchGate</a></li>
-          <li><a href="https://science.gsfc.nasa.gov/sci/bio/hayoung.bong">NASA Science</a></li>
-          <li><a href="https://www.giss.nasa.gov/staff/hbong.html">NASA GISS</a></li>
+          <li><a href="https://scholar.google.com/citations?user=DOV5vZwAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a></li>
+          <li><a href="https://www.researchgate.net/profile/Hayoung-Bong" target="_blank" rel="noopener">ResearchGate</a></li>
+          <li><a href="https://science.gsfc.nasa.gov/sci/bio/hayoung.bong" target="_blank" rel="noopener">NASA Science</a></li>
+          <li><a href="https://www.giss.nasa.gov/staff/hbong.html" target="_blank" rel="noopener">NASA GISS</a></li>
         </ul>
       </div>
     </div>
@@ -833,111 +502,6 @@
   </div>
 </footer>
 
-<script>
-  (function () {
-    var root = document.documentElement;
-    function get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
-    function set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
 
-    var langBtns = document.querySelectorAll('.lang button');
-    function setLang(l) {
-      root.setAttribute('data-lang', l);
-      root.setAttribute('lang', l);
-      langBtns.forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.lang === l ? 'true' : 'false'); });
-      set('lang', l);
-    }
-    setLang(get('lang') || 'en');
-    langBtns.forEach(function (b) { b.addEventListener('click', function () { setLang(b.dataset.lang); }); });
-
-    // Theme: light while the sun is up where the visitor is, dark after sunset.
-    // Location is estimated from the browser's time zone (no permission prompt).
-    var TZ = {
-      'America/New_York':[40.7,-74],'America/Detroit':[42.3,-83],'America/Chicago':[41.9,-87.6],'America/Denver':[39.7,-105],
-      'America/Phoenix':[33.4,-112],'America/Los_Angeles':[34,-118.2],'America/Anchorage':[61.2,-149.9],'Pacific/Honolulu':[21.3,-157.9],
-      'America/Toronto':[43.7,-79.4],'America/Vancouver':[49.3,-123.1],'America/Mexico_City':[19.4,-99.1],'America/Costa_Rica':[9.9,-84.1],
-      'America/Bogota':[4.7,-74.1],'America/Lima':[-12,-77],'America/Santiago':[-33.4,-70.7],'America/Sao_Paulo':[-23.5,-46.6],
-      'America/Argentina/Buenos_Aires':[-34.6,-58.4],'Europe/London':[51.5,-0.1],'Europe/Dublin':[53.3,-6.3],'Europe/Lisbon':[38.7,-9.1],
-      'Europe/Paris':[48.9,2.35],'Europe/Brussels':[50.8,4.4],'Europe/Amsterdam':[52.4,4.9],'Europe/Berlin':[52.5,13.4],
-      'Europe/Zurich':[47.4,8.5],'Europe/Vienna':[48.2,16.4],'Europe/Rome':[41.9,12.5],'Europe/Madrid':[40.4,-3.7],
-      'Europe/Copenhagen':[55.7,12.6],'Europe/Oslo':[59.9,10.8],'Europe/Stockholm':[59.3,18.1],'Europe/Helsinki':[60.2,24.9],
-      'Europe/Warsaw':[52.2,21],'Europe/Athens':[38,23.7],'Europe/Istanbul':[41,29],'Europe/Moscow':[55.8,37.6],
-      'Africa/Cairo':[30,31.2],'Africa/Lagos':[6.5,3.4],'Africa/Nairobi':[-1.3,36.8],'Africa/Johannesburg':[-26.2,28],
-      'Asia/Dubai':[25.2,55.3],'Asia/Kolkata':[28.6,77.2],'Asia/Calcutta':[28.6,77.2],'Asia/Bangkok':[13.8,100.5],
-      'Asia/Ho_Chi_Minh':[10.8,106.7],'Asia/Jakarta':[-6.2,106.8],'Asia/Singapore':[1.35,103.8],'Asia/Kuala_Lumpur':[3.1,101.7],
-      'Asia/Manila':[14.6,121],'Asia/Hong_Kong':[22.3,114.2],'Asia/Taipei':[25,121.5],'Asia/Shanghai':[31.2,121.5],
-      'Asia/Seoul':[37.57,126.98],'Asia/Tokyo':[35.7,139.7],'Australia/Perth':[-31.95,115.9],'Australia/Brisbane':[-27.5,153],
-      'Australia/Sydney':[-33.9,151.2],'Australia/Melbourne':[-37.8,145],'Pacific/Auckland':[-36.8,174.8]
-    };
-    function visitorLatLon() {
-      var tz = '';
-      try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (e) {}
-      if (TZ[tz]) return TZ[tz];
-      var lon = -new Date().getTimezoneOffset() / 4;
-      var south = /^(Australia|Antarctica)\//.test(tz) || /America\/(Argentina|Sao_Paulo|Santiago|Montevideo)/.test(tz);
-      return [south ? -30 : 35, lon];
-    }
-    // Sunrise equation (https://en.wikipedia.org/wiki/Sunrise_equation)
-    function isDaylight(now) {
-      var ll = visitorLatLon(), rad = Math.PI / 180, lat = ll[0] * rad;
-      var J = now / 86400000 + 2440587.5;
-      var n = Math.round(J - 2451545.0 + 0.0008);
-      var Js = n - ll[1] / 360;
-      var M = (357.5291 + 0.98560028 * Js) % 360;
-      var C = 1.9148 * Math.sin(M * rad) + 0.02 * Math.sin(2 * M * rad) + 0.0003 * Math.sin(3 * M * rad);
-      var L = (M + C + 180 + 102.9372) % 360;
-      var Jt = 2451545.0 + Js + 0.0053 * Math.sin(M * rad) - 0.0069 * Math.sin(2 * L * rad);
-      var dec = Math.asin(Math.sin(L * rad) * Math.sin(23.4397 * rad));
-      var cosW = (Math.sin(-0.833 * rad) - Math.sin(lat) * Math.sin(dec)) / (Math.cos(lat) * Math.cos(dec));
-      if (cosW > 1) return false;   // polar night
-      if (cosW < -1) return true;   // midnight sun
-      var W = Math.acos(cosW) / rad / 360;
-      var toMs = function (j) { return (j - 2440587.5) * 86400000; };
-      return now >= toMs(Jt - W) && now < toMs(Jt + W);
-    }
-    function sget(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
-    function sset(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
-    function applyAutoTheme() {
-      if (sget('theme')) return;  // visitor switched manually this visit
-      root.setAttribute('data-theme', isDaylight(Date.now()) ? 'light' : 'dark');
-    }
-    var manual = sget('theme');
-    if (manual) root.setAttribute('data-theme', manual); else applyAutoTheme();
-    setInterval(applyAutoTheme, 5 * 60 * 1000);
-    document.getElementById('theme-toggle').addEventListener('click', function () {
-      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      sset('theme', next);
-    });
-
-    var chips = document.querySelectorAll('.chip'), years = document.querySelectorAll('.pub-year');
-    chips.forEach(function (chip) {
-      chip.addEventListener('click', function () {
-        var f = chip.dataset.filter;
-        chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
-        years.forEach(function (y) {
-          var any = false;
-          y.querySelectorAll('.pub').forEach(function (p) {
-            var show = f === 'all' || f === y.dataset.status || (f === 'first' && p.classList.contains('first'));
-            p.hidden = !show; if (show) any = true;
-          });
-          y.hidden = !any;
-        });
-      });
-    });
-
-    var links = document.querySelectorAll('.site-nav a');
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); });
-        });
-      }, { rootMargin: '-35% 0px -60% 0px' });
-      document.querySelectorAll('main section[id], #contact').forEach(function (s) { io.observe(s); });
-    }
-    var toTop = document.getElementById('to-top');
-    var onScroll = function () { toTop.hidden = window.scrollY < 700; };
-    window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
-  })();
-</script>
 </body>
 </html>
