@@ -315,6 +315,50 @@
     .iso-scale { font-size: .64rem; }
     .stats strong { font-size: 1.9rem; }
   }
+  /* ---------- small screens ---------- */
+  .mobile-only { display: none; }
+  .to-top {
+    position: fixed; z-index: 30;
+    right: 16px; bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    width: 44px; height: 44px; display: grid; place-items: center;
+    background: var(--navy); color: #fff; font-size: 1.1rem; font-weight: 700;
+    box-shadow: 0 4px 14px rgba(8, 26, 49, .3);
+  }
+  .to-top:hover { text-decoration: none; background: var(--blue); }
+  @media (max-width: 980px) {
+    .mobile-only { display: revert; }
+    /* short profile card first, main content next, full profile details last */
+    .layout > .profile { display: contents; }
+    .profile-head { order: 0; background: var(--alt); border-top: 4px solid var(--navy); border-bottom: 0; }
+    .layout > main { order: 1; }
+    .side-title { order: 2; margin: 0 0 -20px; }
+    .side-blocks { order: 3; background: var(--alt); }
+    .quick-links { display: flex; flex-wrap: wrap; gap: 8px; grid-column: 1 / -1; margin-top: 6px; }
+    .quick-links a {
+      flex: 1 1 0; text-align: center; padding: 10px 12px; min-width: 84px;
+      background: var(--page); box-shadow: inset 0 0 0 1px var(--line);
+      font-weight: 700; font-size: .88rem; color: var(--ink);
+    }
+    .quick-links a:first-child { background: var(--navy); color: #fff; box-shadow: none; }
+    .quick-links a:hover { text-decoration: none; }
+  }
+  @media (max-width: 760px) {
+    .site-header .container { min-height: 0; }
+    .logo { padding-block: 2px 4px; }
+    .site-nav { -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent); mask-image: linear-gradient(90deg, #000 82%, transparent); padding-right: 32px; }
+    .site-nav a { font-size: .9rem; padding: 10px 11px 9px; }
+    .hero .container { padding-block: 44px 52px; }
+    .hero-actions .btn { flex: 1 1 auto; justify-content: center; padding-inline: 16px; white-space: nowrap; }
+    .credit { font-size: .64rem; }
+    .stats ul { padding-block: 24px; }
+    .stats li { padding-inline: 16px; }
+    .layout { padding-block: 32px 56px; gap: 40px; }
+    main { gap: 52px; }
+    .sec-title { font-size: 1.5rem; margin-bottom: 20px; }
+    .lede { font-size: 1.06rem; }
+    .iso { padding: 16px; }
+    .research-grid { gap: 16px; }
+  }
 </style>
 </head>
 <body>
@@ -381,7 +425,13 @@
       <div class="photo" aria-hidden="true"><span>HB</span></div>
       <p class="profile-name"><span class="en">Hayoung Bong, Ph.D.</span><span class="ko">봉하영 박사</span></p>
       <p class="profile-role"><span class="en">NASA Postdoctoral Program Fellow<br>Goddard Institute for Space Studies</span><span class="ko">NASA 박사후연구원 (NPP Fellow)<br>NASA 고다드 우주연구소</span></p>
+      <div class="quick-links mobile-only">
+        <a href="mailto:hayoung.bong@nasa.gov">Email</a>
+        <a href="https://scholar.google.com/citations?user=DOV5vZwAAAAJ&amp;hl=en">Scholar</a>
+        <a href="https://science.gsfc.nasa.gov/sci/bio/hayoung.bong">NASA</a>
+      </div>
     </div>
+    <h2 class="sec-title mobile-only side-title"><span class="en">Profile</span><span class="ko">프로필</span></h2>
     <div class="side-blocks">
       <div class="block">
         <h2 class="block-title"><span class="en">Contact</span><span class="ko">연락처</span></h2>
@@ -750,6 +800,8 @@
     </main>
 </div>
 
+<a class="to-top" id="to-top" href="#top" aria-label="Back to top" hidden>↑</a>
+
 <footer id="contact" class="site-footer">
   <div class="container">
     <div class="foot-grid">
@@ -882,6 +934,9 @@
       }, { rootMargin: '-35% 0px -60% 0px' });
       document.querySelectorAll('main section[id], #contact').forEach(function (s) { io.observe(s); });
     }
+    var toTop = document.getElementById('to-top');
+    var onScroll = function () { toTop.hidden = window.scrollY < 700; };
+    window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
   })();
 </script>
 </body>
